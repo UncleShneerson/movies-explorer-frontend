@@ -1,0 +1,16 @@
+.student__info {
+  max-width: 600px;
+  position: relative;
+}
+
+@media screen and (max-width: 1000px) {
+  .student__info {
+    max-width: 364px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .student__info {
+    max-width: 100%;
+  }
+}

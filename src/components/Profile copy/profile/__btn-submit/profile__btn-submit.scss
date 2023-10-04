@@ -1,0 +1,10 @@
+@use '../../../../utils/themes/light.scss';
+
+.profile__btn-submit {
+  height: 45px;
+  width: 100%;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  background-color: light.$color_accentMain;
+}

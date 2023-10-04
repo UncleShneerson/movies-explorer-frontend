@@ -1,0 +1,24 @@
+@use '../../../utils/configs/layout';
+@use '../../../utils/themes/light';
+
+.section_type_accent {
+  flex-direction: column;
+  background-color: light.$color_bgAccent;
+  padding-bottom: layout.$padding_vertAccent_l;
+  padding-top: layout.$padding_vertAccent_l;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .section_type_accent {
+    padding-bottom: layout.$padding_vertAccent_m;
+    padding-top: layout.$padding_vertAccent_m;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .section_type_accent {
+    background-color: transparent;
+    padding-bottom: layout.$padding_vertAccent_s;
+    padding-top: layout.$padding_vertAccent_s;
+  }
+}

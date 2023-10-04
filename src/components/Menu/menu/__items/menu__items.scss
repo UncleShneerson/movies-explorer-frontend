@@ -1,0 +1,23 @@
+.menu__items {
+  padding: 0;
+  margin-left: 45px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 999.5px) {
+  .menu__items {
+    margin: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .menu__items {
+    margin: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}

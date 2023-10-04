@@ -1,0 +1,22 @@
+@use '../../utils/themes/light';
+
+.section__subtitle {
+  margin: 1px 0 0 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  width: 100%;
+  border-bottom: 1px solid light.$color_text;
+  padding-bottom: 23px;
+  margin-bottom: 66px;
+}
+
+@media screen and (max-width: 767.5px) {
+  .section__subtitle {
+    font-size: 18px;
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+  }
+}

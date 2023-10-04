@@ -1,0 +1,22 @@
+.columnizer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .columnizer {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .columnizer {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}

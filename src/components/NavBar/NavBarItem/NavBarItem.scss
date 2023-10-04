@@ -1,0 +1,18 @@
+@use '../../../utils/themes/light.scss';
+
+.navbar__item {
+  font-size: 13px;
+  line-height: 1.23;
+  font-weight: 500;
+  color: light.$color_text;
+  text-decoration: none;
+  border-bottom: 1px solid light.$color_text;
+}
+
+@media screen and (max-width: 767.5px) {
+  .navbar__item {
+    margin-top: 1px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

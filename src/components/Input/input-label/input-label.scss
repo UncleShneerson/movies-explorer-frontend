@@ -1,0 +1,14 @@
+@use '../../../utils/themes/light.scss';
+
+.input-label {
+  color: light.$color_textDescription;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 5px;
+  margin-top: 24px;
+}
+
+.input-label:first-child {
+  margin-top: 0;
+}

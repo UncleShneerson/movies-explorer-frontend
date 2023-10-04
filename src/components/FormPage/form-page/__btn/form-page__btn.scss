@@ -1,0 +1,19 @@
+@use '../../../../utils/themes/light.scss';
+
+.form-page__btn {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  background-color: light.$color_accentMain;
+  border: none;
+  border-radius: 3px;
+  min-height: 45px;
+}
+
+@media screen and (max-width: 767.5px) {
+  .form-page__btn {
+    font-size: 12px;
+    min-height: 45px;
+  }
+}

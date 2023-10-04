@@ -1,0 +1,25 @@
+.menu {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 999.5px) {
+  .menu {
+    padding-top: 159px;
+    padding-bottom: 90px;
+    height: 100%;
+    flex-direction: column;
+    align-items: space-between;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .menu {
+    padding-top: 144px;
+    padding-bottom: 46px;
+  }
+}

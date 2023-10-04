@@ -1,0 +1,19 @@
+@use '../../../utils/themes/light.scss';
+
+$logo_size: 38px;
+
+.logo {
+  box-sizing: border-box;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: light.$color_accentMain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
+  border-radius: 8px;
+  height: $logo_size;
+  width: $logo_size;
+  min-width: $logo_size;
+}

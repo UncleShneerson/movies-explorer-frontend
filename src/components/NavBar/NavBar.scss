@@ -1,0 +1,22 @@
+@use '../../utils/themes/light.scss';
+@use '../../utils/configs/layout.scss';
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  gap: 40px;
+  background-color: light.$color_bgAccent;
+  min-width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+@media screen and (max-width: 767.5px) {
+  .navbar {
+    gap: 24px
+  }
+}

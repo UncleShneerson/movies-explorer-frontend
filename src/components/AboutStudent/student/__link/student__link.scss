@@ -1,0 +1,19 @@
+@use '../../../../utils/themes/light.scss';
+
+.student__link {
+  color: light.$color_text;
+  text-decoration: none;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 767.5px) {
+  .student__link {
+    position: relative;
+  }
+}

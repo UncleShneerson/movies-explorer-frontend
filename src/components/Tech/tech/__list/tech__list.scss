@@ -1,0 +1,23 @@
+.tech__list {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 90px);
+  gap: 10px;
+  justify-content: center;
+  align-self: center;
+  list-style-type: none;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .tech__list {
+    grid-template-columns: repeat(auto-fit, 84px);
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .tech__list {
+    width: calc(100vw - 2 * 71px);
+  }
+}

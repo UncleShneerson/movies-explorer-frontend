@@ -1,0 +1,22 @@
+@use '../../../utils/configs/layout';
+@use '../../../utils/themes/light';
+
+.section_type_normal {
+  flex-direction: column;
+  padding-top: layout.$padding_vertNormal_l;
+  padding-bottom: layout.$padding_vertNormal_l;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .section_type_normal {
+    padding-top: layout.$padding_vertNormal_m;
+    padding-bottom: layout.$padding_vertNormal_m;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .section_type_normal {
+    padding-top: layout.$padding_vertNormal_s;
+    padding-bottom: layout.$padding_vertNormal_s;
+  }
+}

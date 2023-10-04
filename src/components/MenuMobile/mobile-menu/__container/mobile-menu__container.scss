@@ -1,0 +1,24 @@
+@use '../../../../utils/themes/light.scss';
+
+.mobile-menu__container {
+  margin: 0;
+  padding: 0;
+  background-color: light.$color_bgМain;
+  height: 100%;
+  width: 520px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(520px);
+}
+
+.mobile-menu__container_opened {
+  transform: translateX(0);
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .mobile-menu__container {
+    width: 100%;
+  }
+}

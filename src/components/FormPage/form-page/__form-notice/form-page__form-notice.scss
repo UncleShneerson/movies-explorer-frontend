@@ -1,0 +1,9 @@
+@use '../../../../utils/themes/light.scss';
+
+.form-page__form-notice {
+  margin: 4px 0 0 0;
+  color: light.$color_errors;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+}

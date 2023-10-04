@@ -1,0 +1,19 @@
+@use '../../utils/themes/light.scss';
+@use '../../utils/configs/layout.scss';
+
+.root {
+  /* Центруем контент*/
+  margin: 0 auto;
+  min-width: layout.$min_with;
+  // цвет фона
+  background-color: light.$color_bgМain;
+
+  /* Типографика */
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}

@@ -1,0 +1,12 @@
+@use '../../../../utils/themes/light.scss';
+
+.search__option-slider-bullet {
+  background-color: light.$color_bgAccent;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.2s ease-in-out;
+}

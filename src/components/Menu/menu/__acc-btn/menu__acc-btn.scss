@@ -1,0 +1,14 @@
+@use '../../../../utils/themes/light.scss';
+
+.menu__acc-btn {
+  box-sizing: border-box;
+  height: 32px;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 10px;
+  color: light.$color_buttonSecond_text;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}

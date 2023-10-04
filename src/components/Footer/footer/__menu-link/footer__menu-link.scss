@@ -1,0 +1,7 @@
+@use '../../../../utils/themes/light.scss';
+
+.footer__menu-link {
+  margin: 0;
+  text-decoration: none;
+  color: light.$color_text;
+}

@@ -1,0 +1,31 @@
+$tabH: 44px;
+$tabW: 44px;
+$mobH: 43px;
+$mobW: 40px;
+
+.header__menu-burger {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  height: $tabH;
+  width: $tabW;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $tabH $tabW;
+  border: none;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 600px) {
+  .header__menu-burger {
+    height: $mobH;
+    width: $mobW;
+    background-size: $mobH $mobW;
+  }
+}
+
+@media screen and (min-width: 999.5px) {
+  .header__menu-burger {
+    display: none;
+  }
+}

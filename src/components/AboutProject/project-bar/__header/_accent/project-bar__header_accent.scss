@@ -1,0 +1,11 @@
+@use '../../../../../utils/themes/light.scss';
+
+.project-bar__header_accent {
+  width: 100%;
+  align-self: center;
+  background-color: light.$color_barHeaderAccent;
+  margin: 0;
+  padding: 11px 0;
+  color: #FFF;
+  text-align: center;
+}

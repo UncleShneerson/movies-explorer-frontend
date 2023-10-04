@@ -1,0 +1,12 @@
+@use '../../../../utils/themes/light.scss';
+
+.search__bar-button {
+  height: 34px;
+  min-width: 34px;
+  border-radius: 17px;
+  border: none;
+  background-color: light.$color_accentMain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 0 0 46px;
+}

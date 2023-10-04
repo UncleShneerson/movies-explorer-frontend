@@ -1,0 +1,27 @@
+.section__promo-title {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  text-align: center;
+  font-size: 50px;
+  line-height: 1.16;
+  letter-spacing: -2px;
+  max-width: 730px;
+  padding-top: 184px;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .section__promo-title {
+    padding-top: 324px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .section__promo-title {
+    font-size: 31px;
+    line-height: 39px;
+    letter-spacing: -1.24px;
+    max-width: 300px;
+    padding-top: 207px;
+  }
+}

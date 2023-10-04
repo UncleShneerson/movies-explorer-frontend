@@ -1,0 +1,5 @@
+@use '../../../../utils/themes/light.scss';
+
+.header_type_promo {
+  background-color: light.$color_bgPromo;
+}

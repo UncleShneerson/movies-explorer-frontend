@@ -1,0 +1,19 @@
+.article__text {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .article__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .article__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

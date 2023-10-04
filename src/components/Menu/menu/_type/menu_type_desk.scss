@@ -1,0 +1,11 @@
+.menu_type_desk {
+  font-size: 13px;
+  line-height: 1.39;
+  font-weight: 400;
+}
+
+.menu_type_desk {
+  @media screen and (max-width: 999.5px) {
+    display: none;
+  }
+}

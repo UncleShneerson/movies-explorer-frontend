@@ -1,0 +1,20 @@
+@use '../../utils/themes/light.scss';
+
+.divider {
+  padding-top: 69px;
+  margin-bottom: 80px;
+  border-bottom: 1px solid light.$color_accentSecond;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .divider {
+    padding-top: 109px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .divider {
+    padding-top: 45px;
+    margin-bottom: 50px;
+  }
+}

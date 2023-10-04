@@ -1,0 +1,25 @@
+@use '../../../utils/configs/layout';
+@use '../../../utils/themes/light';
+
+.section_type_inner {
+  flex-direction: column;
+  padding-top: layout.$padding_vertInner_s;
+  padding-bottom: layout.$padding_vertInner_s;
+  min-height: calc(100vh - 382px);
+}
+
+@media screen and (max-width: 1279.5px) {
+  .section_type_inner {
+    flex-direction: column;
+    padding-top: layout.$padding_vertInner_l;
+    padding-bottom: layout.$padding_vertInner_l;
+    min-height: calc(100vh - 382px);
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .section_type_inner {
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+}

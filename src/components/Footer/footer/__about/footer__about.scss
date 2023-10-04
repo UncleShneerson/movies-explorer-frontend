@@ -1,0 +1,16 @@
+@use '../../../../utils/themes/light.scss';
+
+.footer__about {
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid light.$color_accentSecond;
+  margin: 0 0 20px 0;
+  color: light.$color_textDescription;
+  text-align: center;
+}
+
+@media screen and (max-width: 767.5px) {
+  .footer__about {
+    margin-bottom: 30px;
+  }
+}

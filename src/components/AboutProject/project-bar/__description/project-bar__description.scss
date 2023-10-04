@@ -1,0 +1,14 @@
+@use '../../../../utils/themes/light.scss';
+
+.project-bar__description {
+  color: light.$color_textDescription;
+  font-weight: 500;
+  line-height: 1.21;
+  margin: 14px 0 0 0;
+}
+
+@media screen and (max-width: 767.5px) {
+  .project-bar__description {
+    margin-top: 10px;
+  }
+}
