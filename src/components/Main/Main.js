@@ -37,6 +37,7 @@ function Main() {
         title='Технологии'
         type='accent'
         id='tech_section'
+        customClass='tech'
       >
         <Tech/>
       </SectionWithSubtitle>

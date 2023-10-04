@@ -1,6 +1,6 @@
 @use '../../../../utils/themes/light.scss';
 
-.cards__button {
+.movies__button {
   width: 320px;
   height: 36px;
   border-radius: 6px;
@@ -12,4 +12,10 @@
   align-self: center;
   margin-top: 80px;
   margin-bottom: 12px;
+}
+
+@media screen and (max-width: 767.5px) {
+  .movies__button {
+    width: 240px;
+  }
 }

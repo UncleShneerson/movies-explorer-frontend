@@ -32,6 +32,7 @@ function SignUp () {
         name = 'name'
         minLength = '2'
         maxLength = '30'
+        placeholder = 'Имя'
         value = {values}
         onChange = {handleChange}
         isValid = {validationData}
@@ -40,6 +41,7 @@ function SignUp () {
         label = 'Email'
         type = 'email'
         name = 'email'
+        placeholder = 'Ваш e-mail'
         minLength = '7'
         maxLength = '30'
         value = {values}
@@ -50,6 +52,7 @@ function SignUp () {
         label = 'Пароль'
         type = 'password'
         name = 'password'
+        placeholder = 'Пароль'
         minLength = '3'
         value = {values}
         onChange = {handleChange}

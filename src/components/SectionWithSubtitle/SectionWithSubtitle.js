@@ -1,10 +1,10 @@
 import './SectionWithSubtitle.scss';
 import Section from '../Section/Section';
 
-function SectionWithPromo({children, type, title, id = false}) {
+function SectionWithSubtitle({children, type, title, id = false, customClass = '',}) {
 
   return (
-    <Section type={type} id={id}>
+    <Section type={type} id={id} customClass={customClass}>
       <h2 className='section__subtitle'>
         {title}
       </h2>
@@ -13,4 +13,4 @@ function SectionWithPromo({children, type, title, id = false}) {
   );
 }
 
-export default SectionWithPromo;
+export default SectionWithSubtitle;

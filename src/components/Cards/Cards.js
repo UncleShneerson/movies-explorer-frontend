@@ -52,7 +52,7 @@ function Cards({cards, type}) {
           />
         ))}
       </ul>
-      {pagination && (<button type='button' className='cards__button hover-button'> Ещё </button>)}
+      {pagination && (<button type='button' className='movies__button hover-button'> Ещё </button>)}
     </>
   );
 }

@@ -11,6 +11,11 @@
   border-bottom: 1px solid light.$color_accentSecond;
 }
 
+.input::placeholder {
+  color: light.$color_textDescription;
+  font-weight: 400;
+}
+
 .input:focus {
   border-color: light.$color_accentMain;
 }

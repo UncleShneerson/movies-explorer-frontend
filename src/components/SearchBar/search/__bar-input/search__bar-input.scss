@@ -12,6 +12,10 @@
   line-height: 20px;
 }
 
+.search__bar-input:focus-visible {
+  font-weight: 500;
+}
+
 @media screen and (max-width: 767.5px) {
   .search__bar-input {
     font-size: 14px;

@@ -5,8 +5,9 @@ function Input({
   label,
   value = '',
   minLength = '',
-  maxLength = '',
+  maxLength = '30',
   type = 'text',
+  placeholder = '',
   isValid = true,
   onChange
 }) {
@@ -20,12 +21,13 @@ function Input({
       <input
       type={type}
       name={name}
+      placeholder = {placeholder}
       minLength={minLength}
       maxLength={maxLength}
       value={value[name] || ""}
       className={`input ${!isValid[name] && 'input_invalid'}`}
-      required
       onChange={onChange}
+      required
     />
     </>
   );

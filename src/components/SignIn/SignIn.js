@@ -34,6 +34,7 @@ function SignIn ({signIn}) {
         label = 'Email'
         type = 'email'
         name = 'email'
+        placeholder = 'Ваш e-mail'
         minLength = '7'
         maxLength = '30'
         value = {values}
@@ -44,6 +45,7 @@ function SignIn ({signIn}) {
         label = 'Пароль'
         type = 'password'
         name = 'pass'
+        placeholder = 'Пароль'
         minLength = '3'
         value = {values}
         onChange = {handleChange}

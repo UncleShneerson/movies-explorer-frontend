@@ -1,0 +1,6 @@
+@use '../../../../../utils/themes/light.scss';
+
+.search__bar-button_invalid {
+  background-color: light.$color_accentSecond;
+  cursor: default;
+}

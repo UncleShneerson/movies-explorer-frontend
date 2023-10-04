@@ -11,7 +11,7 @@ function Footer() {
         <p className='footer__copy'>
           © {thisYear}
         </p>
-        <nav className='footer__menu'>
+        <ul className='footer__menu'>
           <li className='footer__menu-item'>
             <a
               className='footer__menu-link hover-link'
@@ -30,7 +30,7 @@ function Footer() {
               Github
             </a>
           </li>
-        </nav>
+        </ul>
       </div>
     </footer>
   );

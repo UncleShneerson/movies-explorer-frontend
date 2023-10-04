@@ -2,7 +2,9 @@
 @import './search/__bar/search__bar.scss';
 @import './search/__bar-icon/search__bar-icon.scss';
 @import './search/__bar-input/search__bar-input.scss';
+@import './search/__bar-input/_invalid/search__bar-input_invalid.scss';
 @import './search/__bar-button/search__bar-button.scss';
+@import './search/_invalid/__bar-button/search__bar-button_invalid.scss';
 @import './search/__option/search__option.scss';
 @import './search/__option-slider/search__option-slider.scss';
 @import './search/__option-slider/_active/search__option-slider_active.scss';

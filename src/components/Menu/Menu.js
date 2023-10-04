@@ -29,19 +29,19 @@ function Menu({type = 'all',}) {
   }
 
   return (
-    <nav className={`menu menu_type_${type}`}>
-      <ul className='menu__items'>
+    <div className={`menu menu_type_${type}`}>
+      <menu className='menu__items'>
         {
           actualItems.map((item) => (
             <MenuItem title={item.title} link={item.link}/>
           ))
         }
-      </ul>
+      </menu>
       <button className='menu__acc-btn hover-button' onClick={handleProfileClick}>
-            <img src={account_ico} alt="Smile_logo" className="header__btn-ico" />
+            <img src={account_ico} alt="Smile_logo" className="menu__acc-ico" />
             Аккаунт
       </button>
-    </nav>
+    </div>
   );
 }
 

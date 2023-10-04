@@ -86,9 +86,10 @@ function Profile({signOut}) {
               <div className='profile__buttons'>
                 <p className='profile__notice'>При обновлении профиля произошла ошибка.</p>
                 <button
-                  className={`profile__btn-submit ${!isValid && 'profile__btn-submit_invalid'}`}
+                  className={`profile__btn-submit hover-button ${!isValid && 'profile__btn-submit_invalid'}`}
                   type='submit'
                   onClick={handleSubmitClick}
+                  disabled={!isValid}
                 >
                   Сохранить
                 </button>
@@ -98,7 +99,7 @@ function Profile({signOut}) {
                 <button className='profile__btn-text hover-link' type='button' onClick={handleEditClick}>
                   Редактировать
                 </button>
-                <button className='profile__btn-text_accent hover-link' type='button' onClick={signOut}>
+                <button className='profile__btn-text profile__btn-text_accent hover-link' type='button' onClick={signOut}>
                   Выйти из аккаунта
                 </button>
               </div>

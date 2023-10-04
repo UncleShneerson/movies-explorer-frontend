@@ -7,7 +7,7 @@ import Cards from "../Cards/Cards";
 function Movies({cards, type = 'all'}) {
   return (
     <>
-      <Section type='inner'>
+      <Section type='inner' customClass='movies' aria='Поиск фильмов'>
         <SearchBar/>
         <Divider/>
         <Cards cards={cards} type={type} />

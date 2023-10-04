@@ -27,8 +27,8 @@ function AboutStudent() {
         </div>
         <img className='student__photo' src={studentPhoto} alt='Фото студента'/>
       </div>
-      <div className='student__portfolio'>
-        <p className='student__portfolio-title'>
+      <div className='portfolio'>
+        <p className='portfolio__title'>
           Портфолио
         </p>
         <LinkOuter

@@ -1,6 +1,5 @@
 @use '../../../../../utils/themes/light.scss';
 
-.profile__btn-text_accent {
-  @extend .profile__btn-text;
+.search__bar-input_invalid {
   color: light.$color_errors;
 }
