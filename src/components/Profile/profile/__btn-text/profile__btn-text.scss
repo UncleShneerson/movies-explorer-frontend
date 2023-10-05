@@ -1,0 +1,20 @@
+.profile__btn-text {
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+  background-color: transparent;
+}
+
+.profile__btn-text:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 767.5px) {
+  .profile__btn-text {
+    font-size: 12px;
+  }
+}

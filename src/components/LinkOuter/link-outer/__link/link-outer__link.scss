@@ -1,0 +1,6 @@
+@use '../../../../utils/themes/light.scss';
+
+.link-outer__link {
+  text-decoration: none;
+  color: light.$color_text;
+}

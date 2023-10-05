@@ -1,0 +1,17 @@
+.menu__item_active {
+  font-weight: 500;
+  margin: 0;
+}
+
+@media screen and (max-width: 999.5px) {
+  .menu__item_active {
+    padding-bottom: 4px;
+    border-bottom: 2px solid #000;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .menu__item_active {
+    padding-bottom: 7px;
+  }
+}

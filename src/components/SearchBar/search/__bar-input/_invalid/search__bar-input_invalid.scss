@@ -1,0 +1,5 @@
+@use '../../../../../utils/themes/light.scss';
+
+.search__bar-input_invalid {
+  color: light.$color_errors;
+}

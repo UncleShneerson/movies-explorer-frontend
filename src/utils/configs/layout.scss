@@ -1,0 +1,42 @@
+// SIZES
+// max and min weidth
+$max_with: 1280px;
+$min_with: 320px;
+
+// PREAKPOINTS
+$bp_laptop: 1280px;
+$bp_tablet: 768px;
+
+// PADDINGS
+$padding_vertInner_s: 70px;
+$padding_vertInner_l: 80px;
+
+$padding_vertNormal_l: 110px;
+$padding_vertNormal_m: 90px;
+$padding_vertNormal_s: 70px;
+
+$padding_vertAccent_l: 100px;
+$padding_vertAccent_m: $padding_vertNormal_m;
+$padding_vertAccent_s: $padding_vertNormal_s;
+
+$padding_sideDesk: 70px;
+
+$padding_sideTablet_l: 30px;
+$padding_sideTablet_s: 50px;
+
+$padding_sideMob_l: 14px;
+$padding_sideMob_s: 18px;
+
+$padding_sideMob: 18px;
+$padding_sideMain: calc((100% - $max_with) / 2 + $padding_sideDesk);
+
+$padding_sideMob: 18px;
+$padding_sideMobBig: 30px;
+$padding_sideMobSmall: 14px;
+
+// ELEMENTS
+// header
+$header_height: 74px;
+
+//cards
+$card_width: 270px;

@@ -1,0 +1,5 @@
+@use '../../../../../utils/themes/light.scss';
+
+.search__option-slider_active {
+  background-color: light.$color_on;
+}

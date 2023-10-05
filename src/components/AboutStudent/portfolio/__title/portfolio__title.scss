@@ -1,0 +1,17 @@
+@use '../../../../utils/themes/light.scss';
+
+.portfolio__title {
+  color: light.$color_textDescription;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 51px 0;
+}
+
+@media screen and (max-width: 767.5px) {
+  .portfolio__title {
+    margin-top: 70px;
+    font-size: 14px;
+    margin-bottom: 41px;
+  }
+}

@@ -1,0 +1,6 @@
+@use '../../../../../utils/themes/light.scss';
+
+.profile__btn-text_accent {
+  @extend .profile__btn-text;
+  color: light.$color_errors;
+}

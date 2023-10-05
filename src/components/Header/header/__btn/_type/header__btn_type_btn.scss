@@ -1,0 +1,14 @@
+@use '../../../../../utils/themes/light.scss';
+
+.header__btn_type_btn {
+  padding: 0 20px;
+  color: light.$color_buttonMain_text;
+  background-color: light.$color_buttonMain;
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 767.5px) {
+  .header__btn_type_btn {
+    padding: 0 12px;
+  }
+}

@@ -1,0 +1,11 @@
+@use '../../../../utils/themes/light.scss';
+
+.footer__copy {
+  margin: 0;
+}
+
+@media screen and (max-width: 767.5px) {
+  .footer__copy {
+    color: light.$color_textDescription;
+  }
+}

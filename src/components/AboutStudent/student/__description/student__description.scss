@@ -1,0 +1,21 @@
+.student__description {
+  margin: 0 0 26px 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .student__description {
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .student__description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

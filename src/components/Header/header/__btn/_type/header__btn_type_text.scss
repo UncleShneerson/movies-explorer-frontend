@@ -1,0 +1,7 @@
+@use '../../../../../utils/themes/light.scss';
+
+.header__btn_type_tex {
+  font-size: 12px;
+  color: light.$color_buttonSecond_text;
+  background-color: transparent;
+}

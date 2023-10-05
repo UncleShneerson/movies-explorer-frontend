@@ -1,0 +1,22 @@
+@use '../../../utils/themes/light.scss';
+
+.link-outer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid light.$color_accentSecond;
+  padding-bottom: 19px;
+  margin-bottom: 21px;
+}
+
+.link-outer:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .link-outer:last-child {
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,5 @@
+@use '../../../../../../utils/themes/light.scss';
+
+.card__option_active {
+  background-color: light.$color_on;
+}

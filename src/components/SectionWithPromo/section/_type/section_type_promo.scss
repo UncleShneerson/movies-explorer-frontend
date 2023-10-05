@@ -1,0 +1,25 @@
+@use '../../../../utils/themes/light';
+
+.section_type_promo {
+  justify-content: center;
+  min-height: 524px;
+  background-color: light.$color_bgPromo;
+  background-repeat: no-repeat;
+  background-position: center 82px;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .section_type_promo {
+    min-height: 784px;
+    background-position: center 224px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .section_type_promo {
+    min-height: 570px;
+    background-size: 248px;
+    background-position: center 142px;
+
+  }
+}

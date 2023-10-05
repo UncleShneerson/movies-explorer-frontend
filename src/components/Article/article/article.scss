@@ -1,0 +1,19 @@
+.article {
+  margin-bottom: 110px;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .article {
+    margin-bottom: 93px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .article {
+    margin-bottom: 0px;
+  }
+
+  .article:last-child {
+    margin-bottom: 60px;
+  }
+}

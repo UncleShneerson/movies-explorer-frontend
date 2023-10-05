@@ -1,0 +1,17 @@
+@use '../../../../utils/themes/light.scss';
+
+.form-page__notice {
+  color: light.$color_textDescription;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 16px 0 0 0;
+}
+
+@media screen and (max-width: 767.5px) {
+  .form-page__notice {
+    font-size: 12px;
+    margin: 14px 0 0 0;
+  }
+}

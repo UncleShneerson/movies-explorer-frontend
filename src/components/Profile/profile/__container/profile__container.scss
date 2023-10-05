@@ -1,0 +1,29 @@
+.profile__container {
+  margin-top: 70px;
+  margin-bottom: 70px;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 410px;
+  height: 100%;
+  padding: 0;
+}
+
+@media screen and (max-width: 999.5px) {
+  .profile__container {
+    margin-top: 236px;
+    margin-bottom: 70px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile__container {
+    padding: 0;
+    min-height: calc(100vh - 70px - 40px - 74px);
+    width: calc(100vw - 60px);
+    margin: 70px;
+    margin-bottom: 40px;
+    align-items: center;
+  }
+}

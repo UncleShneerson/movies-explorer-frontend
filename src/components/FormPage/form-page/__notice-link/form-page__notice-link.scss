@@ -1,0 +1,6 @@
+@use '../../../../utils/themes/light.scss';
+
+.form-page__notice-link {
+  color: light.$color_accentMain;
+  margin: 0;
+}

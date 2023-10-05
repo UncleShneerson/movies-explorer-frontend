@@ -1,0 +1,25 @@
+@use '../../../../utils/themes/light.scss';
+
+.tech__list-item {
+  text-align: center;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.56px;
+  padding: 21px 0;
+  background-color: light.$color_accentSecond;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1279.5px) {
+  .tech__list-item {
+    font-size: 12px;
+    line-height: normal;
+  }
+}
+
+
+@media screen and (max-width: 767.5px) {
+  .tech__list-item {
+    line-height: 1.25;
+  }
+}

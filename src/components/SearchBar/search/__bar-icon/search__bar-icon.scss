@@ -1,0 +1,13 @@
+.search__bar-icon {
+  height: 22px;
+  width: 22px;
+  flex-shrink: 0;
+  border: 0;
+  margin: 25px 16px 25px 25px;
+}
+
+@media screen and (max-width: 767.5px) {
+  .search__bar-icon {
+    display: none;
+  }
+}

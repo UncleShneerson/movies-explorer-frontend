@@ -1,0 +1,21 @@
+@use '../../../utils/themes/light.scss';
+
+.input {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  padding-bottom: 10px;
+  border-bottom: 1px solid light.$color_accentSecond;
+}
+
+.input::placeholder {
+  color: light.$color_textDescription;
+  font-weight: 400;
+}
+
+.input:focus {
+  border-color: light.$color_accentMain;
+}

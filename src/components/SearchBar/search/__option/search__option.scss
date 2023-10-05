@@ -1,0 +1,24 @@
+.search__option {
+  display: flex;
+  width: auto;
+  align-items: center;
+  margin: 16px 30px 16px 19px;
+  border-left: 1px solid #cbcbcb;
+  padding-left: 30px;
+}
+
+
+@media screen and (max-width: 1279.5px) {
+  .search__option {
+    margin-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .search__option {
+    border: none;
+    padding: 0;
+    margin: 45px 0 0 0;
+  }
+}
