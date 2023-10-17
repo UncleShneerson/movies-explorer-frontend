@@ -1,3 +1,5 @@
 @import './input/input.scss';
-@import './input/_invalid/input_invalid.scss';
-@import './input-label/input-label.scss';
+@import './input/__input/input__input.scss';
+@import './input/__input/_invalid/input__input_invalid.scss';
+@import './input/__label/input__label.scss';
+@import './input/__error/input__error.scss';

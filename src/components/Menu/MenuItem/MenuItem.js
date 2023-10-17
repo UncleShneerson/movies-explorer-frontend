@@ -13,7 +13,7 @@ function MenuItem({title, link}) {
       className='menu__item hover-link'
       onClick={handleItemClick}
     >
-      <span className={`${location === link && 'menu__item menu__item_active'}`}>{title}</span>
+      <span className={`${location === link ? 'menu__item menu__item_active' : ''}`}>{title}</span>
     </li>
   );
 }

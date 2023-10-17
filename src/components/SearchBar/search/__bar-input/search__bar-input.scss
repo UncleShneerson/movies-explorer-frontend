@@ -13,7 +13,7 @@
 }
 
 .search__bar-input:focus-visible {
-  font-weight: 500;
+  border-bottom: 1px solid light.$color_accentMain;
 }
 
 @media screen and (max-width: 767.5px) {

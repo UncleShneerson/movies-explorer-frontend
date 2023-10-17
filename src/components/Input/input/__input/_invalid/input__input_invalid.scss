@@ -1,6 +1,6 @@
-@use '../../../../utils/themes/light.scss';
+@use '../../../../../utils/themes/light.scss';
 
-.input_invalid {
+.input__input_invalid {
   color: light.$color_errors;
   line-height: normal;
   outline: none;
@@ -10,6 +10,6 @@
   border-bottom: 1px solid light.$color_accentSecond;
 }
 
-.input_invalid:focus {
+.input__input_invalid:focus {
   border-color: light.$color_errors;
 }

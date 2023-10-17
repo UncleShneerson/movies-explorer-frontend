@@ -8,7 +8,7 @@ function NavBar({links}) {
       <nav className='navbar'>
         {
           links.map((item) => (
-            <NavBarItem title={item.title} link={item.link}/>
+            <NavBarItem title={item.title} link={item.link} key={item.title}/>
           ))
         }
       </nav>

@@ -33,7 +33,7 @@ function Menu({type = 'all',}) {
       <menu className='menu__items'>
         {
           actualItems.map((item) => (
-            <MenuItem title={item.title} link={item.link}/>
+            <MenuItem title={item.title} link={item.link} key={item.title}/>
           ))
         }
       </menu>

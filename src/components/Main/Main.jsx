@@ -9,7 +9,7 @@ import AboutStudent from '../AboutStudent/AboutStudent';
 function Main() {
 
   return (
-    <>
+    <main>
       <SectionWithPromo
         promoImg={promoImg}
         title='Учебный проект студента факультета Веб-разработки.'
@@ -47,7 +47,7 @@ function Main() {
       >
         <AboutStudent/>
       </SectionWithSubtitle>
-    </>
+    </main>
   );
 }
 

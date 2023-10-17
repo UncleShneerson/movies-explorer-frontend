@@ -1,0 +1,5 @@
+@use '../../../../../../utils/themes/light.scss';
+
+.card__option_error {
+  background-color: light.$color_errors;
+}

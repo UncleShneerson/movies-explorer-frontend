@@ -1,41 +1,52 @@
 import './Profile.scss';
-
 import { useState, useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-
 import useValidation from "../../hooks/useValidation";
 import useForm from "../../hooks/useForm";
-
 import Header from "../Header/Header";
 
-
-function Profile({signOut}) {
+function Profile({
+    apiErrors,
+    onSignOut,
+    onSubmit,
+    btnTxt = 'Сохранить',
+    loadingText = 'Подождите...',
+    isLoading = false
+  }) {
+  /* --- КОНСТАНТЫ --- */
   const currentUser = useContext(CurrentUserContext);
   const [isEditable, setIsEditable] = useState(false);
+  const [okMessage, setOkMessage] = useState('');
 
   const {
     values,
     handleChange: handleInputChange,
     // setValues
-  } = useForm({});
+  } = useForm({name: currentUser.name, email: currentUser.email});
 
   const {
     handleChange: handleValidation,
     validationData,
     isValid,
+    errorMessages,
   } = useValidation({ name: true, email: true, pass: true });
 
+  /* --- ФУНКЦИИ --- */
   function handleChange(e) {
     handleInputChange(e);
     handleValidation(e);
   }
 
   function handleEditClick () {
+    setOkMessage('');
     setIsEditable(true);
   }
 
-  function handleSubmitClick () {
+  async function handleSubmitClick (e) {
+    e.preventDefault()
+    const message = await onSubmit(values);
     setIsEditable(false);
+    setOkMessage(message);
   }
 
   return (
@@ -51,8 +62,9 @@ function Profile({signOut}) {
                 { !isEditable ? (<p className='profile__form-value'>{ currentUser.name }</p>) :
                   (
                     <input
-                      className = { `profile__form-input ${!validationData.name && 'profile__form-input_invalid'}`}
+                      className = { `profile__form-input ${!validationData.name ? 'profile__form-input_invalid' : ''}`}
                       name = 'name'
+                      autoComplete='name'
                       minLength = '2'
                       maxLength = '30'
                       type = 'text'
@@ -68,9 +80,10 @@ function Profile({signOut}) {
                 { !isEditable ? (<p className='profile__form-value'>{ currentUser.email }</p>) :
                   (
                     <input
-                    className = { `profile__form-input ${!validationData.email && 'profile__form-input_invalid'}`}
+                    className = { `profile__form-input ${!validationData.email ? 'profile__form-input_invalid' : ''}`}
                     name = 'email'
                     type = 'email'
+                    autoComplete='email'
                     minLength = '7'
                     maxLength = '30'
                     value = { values.email }
@@ -81,25 +94,34 @@ function Profile({signOut}) {
                   )
                 }
               </div>
+              {(okMessage !== '') && (<p className='profile__form-notice'>Данные сохранены</p>)}
             </div>
             {isEditable ? (
               <div className='profile__buttons'>
-                <p className='profile__notice'>При обновлении профиля произошла ошибка.</p>
+                <p className='profile__notice'>{apiErrors} {errorMessages.name} {errorMessages.email}</p>
                 <button
-                  className={`profile__btn-submit hover-button ${!isValid && 'profile__btn-submit_invalid'}`}
+                  className={`profile__btn-submit hover-button ${!isValid ? 'profile__btn-submit_invalid' : ''}`}
                   type='submit'
                   onClick={handleSubmitClick}
                   disabled={!isValid}
                 >
-                  Сохранить
+                  {!isLoading ? btnTxt : loadingText}
                 </button>
               </div>
             ) : (
-              <div className='profile__buttons'>
-                <button className='profile__btn-text hover-link' type='button' onClick={handleEditClick}>
+                <div className='profile__buttons'>
+                <button
+                  className='profile__btn-text hover-link'
+                  type='button'
+                  onClick={handleEditClick}
+                >
                   Редактировать
                 </button>
-                <button className='profile__btn-text profile__btn-text_accent hover-link' type='button' onClick={signOut}>
+                <button
+                  className='profile__btn-text profile__btn-text_accent hover-link'
+                  type='button'
+                  onClick={onSignOut}
+                >
                   Выйти из аккаунта
                 </button>
               </div>
