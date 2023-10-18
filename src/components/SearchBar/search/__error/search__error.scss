@@ -1,0 +1,7 @@
+@use '../../../../utils/themes/light.scss';
+
+.search__error {
+  color: light.$color_errors;
+  text-align: center;
+  font-size: 11px;
+}

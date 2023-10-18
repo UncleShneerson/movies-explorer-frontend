@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function useSearch({mainArray, isShort, preload = true}) {
+  const { _id } = useContext(CurrentUserContext);
+
   // сохраняем базовые фильмы
   // все фильтрованые фильмы
   const [filmArray, setFilmsArray] = useState([]);
@@ -35,6 +38,7 @@ function useSearch({mainArray, isShort, preload = true}) {
     const array = await createArray(inValue, baseArray)
     setFilmsArray (array);
     setFilteredFilms (array);
+    setLocalStorage(array, inValue, isShort);
   }
 
   async function createArray(inValue, baseArray) {
@@ -72,8 +76,22 @@ function useSearch({mainArray, isShort, preload = true}) {
     setFilteredFilms(newFilteredArray);
   }
 
+  async function setLocalStorage ( array, inputValue, isShort, ) {
+    let newArray;
+    isShort ? newArray = await createShortArray(array) : newArray = array;
+
+    localStorage.setItem('searchdata', JSON.stringify({
+      arrayValue: newArray,
+      inputValue: inputValue,
+      isShortValue: isShort,
+      userId: _id,
+    }));
+  }
+
   return {
     filteredFilms,
+    setFilteredFilms,
+    setFilmsArray,
     onSearchSubmit,
     deleteFromArray,
   };

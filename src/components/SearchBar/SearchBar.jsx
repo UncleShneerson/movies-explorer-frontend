@@ -3,8 +3,15 @@ import searchIcon from "../../images/search_icon_gray.svg";
 import searchIconButton from "../../images/search_icon.svg";
 import { useState } from "react";
 
-function SearchBar({onOptionChange, option, onSubmit, errorMessage = ''}) {
+function SearchBar({
+  onOptionChange,
+  option,
+  onSubmit,
+  searchInputValue=''
+}) {
   const [inputValue, setInputValue] = useState('');
+  const [wasSearch, setWasSearch] = useState(false);
+  const [errorMessage, setЕrrorMessage] = useState('');
   const buttonStyle = { backgroundImage: `url(${searchIconButton})` };
 
   function handleSliderClick() {
@@ -12,14 +19,28 @@ function SearchBar({onOptionChange, option, onSubmit, errorMessage = ''}) {
   }
 
   function handleInputChange(e) {
+    e.target.value === ''
+      ? setЕrrorMessage('')
+      : setЕrrorMessage('')
     setInputValue(e.target.value)
   }
 
   function handleSubmit() {
-    onSubmit(inputValue);
+    if(!wasSearch && inputValue === '' && searchInputValue !== ''){
+      setЕrrorMessage('Обновите поле поиска');
+      return
+    }
+    if(inputValue === ''){
+      setЕrrorMessage('Заполните поле');
+      return
+    } else {
+      onSubmit(inputValue);
+      setWasSearch(true);
+    }
   }
 
   return (
+    <>
     <div className='search'>
       <div className='search__bar'>
         <img className='search__bar-icon' src={searchIcon} alt='Поиск'/>
@@ -27,12 +48,13 @@ function SearchBar({onOptionChange, option, onSubmit, errorMessage = ''}) {
           className = { `search__bar-input ${errorMessage !== '' ? 'search__bar-input_invalid' : ''}`}
           type= 'text'
           name= 'search'
+          defaultValue = {searchInputValue}
           autoComplete='search'
           placeholder = 'Фильм'
           onChange={handleInputChange}
         />
         <button
-          className={`search__bar-button ${errorMessage !== '' ? 'search__bar-button_invalid' : 'hover-button'}`}
+          className={`search__bar-button hover-button`}
           style={buttonStyle}
           text='Поиск'
           onClick={handleSubmit}
@@ -55,6 +77,8 @@ function SearchBar({onOptionChange, option, onSubmit, errorMessage = ''}) {
         <p className="search__option-text">Короткометражки</p>
       </div>
     </div>
+    { errorMessage !== '' && (<p className="search__error">{errorMessage}</p>) }
+    </>
   );
 }
 

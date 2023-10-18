@@ -1,13 +1,13 @@
 import { Navigate } from "react-router";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function ProtectedRoute({ loggedIn, children }) {
-  console.log('проверка из логин');
-  console.log(loggedIn);
+
+export default function ProtectedRoute({ element: Component, ...props }) {
+  const { loggedIn, } = useContext(CurrentUserContext);
   return loggedIn ? (
-    <>
-    {children}
-    </>
+    <Component {...props} />
   ) : (
     <Navigate to="/signin" replace />
-  )
+  );
 }

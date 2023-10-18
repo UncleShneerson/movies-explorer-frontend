@@ -44,9 +44,18 @@ function Profile({
 
   async function handleSubmitClick (e) {
     e.preventDefault()
-    const message = await onSubmit(values);
-    setIsEditable(false);
-    setOkMessage(message);
+    if ((values.name === currentUser.name) && (values.email === currentUser.email)) {
+        setOkMessage('Введены предыдушие значения');
+        setIsEditable(false);
+    } else {
+      try {
+        await onSubmit(values);
+        setOkMessage('Данные обновлены');
+        setIsEditable(false);
+      } catch (error) {
+        setIsEditable(true);
+      }
+    }
   }
 
   return (
@@ -94,7 +103,7 @@ function Profile({
                   )
                 }
               </div>
-              {(okMessage !== '') && (<p className='profile__form-notice'>Данные сохранены</p>)}
+              {(okMessage !== '') && (<p className='profile__form-notice'>{okMessage}</p>)}
             </div>
             {isEditable ? (
               <div className='profile__buttons'>

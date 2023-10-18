@@ -1,7 +1,9 @@
 import './Cards.scss';
 import Card from './Card/Card';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Cards({
+  apiErrors = '',
   cards = [],
   isCardsLoaded = true,
   type = '',
@@ -9,15 +11,15 @@ function Cards({
   onMoreClick,
   onDisLike,
   likedList,
-  pagination = true,
+  pagination = false,
   isBtnActive = true,
   onDelite,}) {
 
   function handleMoreClick () {
     onMoreClick();
-  }
+  };
 
-  return (
+  return apiErrors !== '' ? (<p className='cards__notice cards__notice_error'>{apiErrors}</p>) : (
     <>
       {(cards.length === 0 && isCardsLoaded) && (<p className='cards__notice'>Ничего не найдено</p>)}
       <ul className={`cards ${!pagination ? 'cards_notPaginated' : ''}`}>
@@ -33,7 +35,7 @@ function Cards({
           />)
         ))}
       </ul>
-      {pagination && (
+      {pagination && cards.length !== 0 && (
         <button
           type='button'
           className={`movies__button ${isBtnActive ? 'hover-button' : 'movies__button_inactiv'}`}

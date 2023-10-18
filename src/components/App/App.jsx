@@ -1,6 +1,6 @@
 import "./App.scss";
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { mainApi } from "../../utils/MainApi";
 import { moviesApi } from "../../utils/MoviesApi";
@@ -18,7 +18,7 @@ import Profile from "../Profile/Profile";
 
 function App() {
   const navigate = useNavigate();
-
+  const currentLacation = useLocation().pathname;
   /* --- ПЕРЕМЕННЫЕ --- */
   const [isAppLoaded, setIsAppLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -50,6 +50,10 @@ function App() {
   useEffect(() => {
     checkToken();
   }, []);
+
+  useEffect(() => {
+    setApiError('');
+  }, [currentLacation]);
 
   // ПОЛУЧАЕМ ДАННЫЕ ПОСЛЕ АВТОРИЗАЦИИ
   useEffect(() => {
@@ -114,7 +118,11 @@ function App() {
       const array = await moviesApi.getMovies();
       return array;
     } catch (error) {
-      setApiError(error);
+      setApiError(`
+        Во время запроса произошла ошибка.
+        Возможно, проблема с соединением или сервер недоступен.
+        Подождите немного и попробуйте ещё раз`
+      );
     } finally {
       setIsLoading(false);
     }
@@ -153,12 +161,12 @@ function App() {
   async function handleSignIn(values) {
     try {
       setIsLoading(true);
-      setApiError("");
+      setApiError('');
       await mainApi.signIn(values);
       setLoggedIn(true);
       navigate("/movies");
     } catch (error) {
-      setApiError(error);
+      setApiError('error');
     } finally {
       setIsLoading(false);
     }
@@ -183,34 +191,20 @@ function App() {
 
   // РЕДАКТИРОВАНИЕ ПРОФАЙЛА
   async function handleEditProfile(values) {
-    const { name, email } = values;
-
-    // если данные не изменились,
-    // заблокировал запрос, а не кнопку.
-    // в этом случае - не надо перегружать страницу, если
-    // пользователь нажал "редактировать", но передумал вносить правки
-
-    if (name === currentUser.name && email === currentUser.email) {
-      return '';
-    } else {
-
-      // если обновил данные
-      try {
-        setIsLoading(true);
-        setApiError("");
-        const newData = await mainApi.editUserInfo(values);
-        setCurrentUser((prevState) => ({
-          ...prevState,
-          name: newData.name,
-          email: newData.email,
-        }));
-        return 'Данные обновлены';
-      } catch (error) {
-        setApiError(error);
-        return '';
-      } finally {
-        setIsLoading(false);
-      }
+    try {
+      setIsLoading(true);
+      setApiError("");
+      const newData = await mainApi.editUserInfo(values);
+      setCurrentUser((prevState) => ({
+        ...prevState,
+        name: newData.name,
+        email: newData.email,
+      }));
+    } catch (error) {
+      setApiError(error);
+      throw error;
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -224,9 +218,10 @@ function App() {
         _id: "",
         loggedIn: false,
       });
+      localStorage.removeItem('searchdata');
       navigate("/signin");
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 
@@ -283,37 +278,37 @@ function App() {
         <Route
           path="/"
           element={
-            <LayoutHeaderFooter>
-              <Main />
-            </LayoutHeaderFooter>
+            <LayoutHeaderFooter
+              innerComponent={Main}
+            />
           }
         />
         <Route
           path="/movies"
           element={
-            <LayoutHeaderFooter>
-              <Movies
-                onLoad={getFilmList}
-                apiLoading={isLoading}
-                apiErrors={apiError}
-                likedList={likedIdList}
-                onLike={cardLike}
-                onDisLike={cardDisLike}
-              />
-            </LayoutHeaderFooter>
+            <ProtectedRoute
+              element={LayoutHeaderFooter}
+              innerComponent={Movies}
+              onLoad={getFilmList}
+              apiLoading={isLoading}
+              apiErrors={apiError}
+              likedList={likedIdList}
+              onLike={cardLike}
+              onDisLike={cardDisLike}
+            />
           }
         />
         <Route
           path="/saved-movies"
           element={
-            <LayoutHeaderFooter>
-              <MoviesSaved
-                cards={savedMovies}
-                likedList={likedIdList}
-                onLike={cardLike}
-                onDisLike={cardDisLike}
-              />
-            </LayoutHeaderFooter>
+            <ProtectedRoute
+              element={LayoutHeaderFooter}
+              innerComponent={MoviesSaved}
+              cards={savedMovies}
+              likedList={likedIdList}
+              onLike={cardLike}
+              onDisLike={cardDisLike}
+            />
           }
         />
         <Route
@@ -339,7 +334,8 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Profile
+            <ProtectedRoute
+              element={Profile}
               onSignOut={handleSignOut}
               onSubmit={handleEditProfile}
               apiErrors={apiError}

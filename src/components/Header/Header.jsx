@@ -1,14 +1,14 @@
 import "./Header.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import burger from "../../images/burger_menu.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import burger from "../../images/burger_menu.svg";
 import Logo from "../Logo/Logo";
 import Menu from "../Menu/Menu";
 import MenuMobile from "../MenuMobile/MenuMobile";
 
 function Header() {
-  const { loggedIn } = useContext(CurrentUserContext);
+  const { loggedIn, } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

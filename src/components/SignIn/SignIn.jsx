@@ -10,7 +10,7 @@ function SignIn({isLoading = false, onSubmit, apiErrors = '' }) {
 
   useEffect(() => {
     apiErrors !== '' && setApiMessage(signInErrors(apiErrors));
-  }, [apiErrors, setApiMessage])
+  }, [apiErrors])
 
   const {
     values,

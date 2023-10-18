@@ -1,11 +1,11 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
-function LayoutHeaderFooter ({children}) {
+function LayoutHeaderFooter ({ innerComponent: Component, ...props }) {
   return(
     <>
     <Header/>
-      <main>{children}</main>
+      <main><Component {...props} /></main>
     <Footer/>
     </>
   )

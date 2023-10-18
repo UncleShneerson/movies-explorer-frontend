@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import Section from "../Section/Section";
 import SearchBar from '../SearchBar/SearchBar';
 import Divider from '../Divider/Divider';
 import Cards from "../Cards/Cards";
 import useSearch from "../../hooks/useSearch";
 import Preloader from "../Preloader/Preloader";
-import { Value } from "sass";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Movies({
   likedList,
@@ -15,9 +15,13 @@ function Movies({
   onLike,
   onDisLike,
 }) {
+  /* --- КОНСТАНТЫ --- */
+  // добавляем id для защиты локальных данных
+  const { _id } = useContext(CurrentUserContext);
   const [beatMovies, setBeatMovies] = useState([]);
   const [isShort, setIsShort] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState('');
 
   // pagination
   const [films, setFilms] = useState([]);
@@ -26,11 +30,57 @@ function Movies({
   const [count, setCount] = useState(0);
   const [isBtnActive, setIsBtnActive] = useState(false);
 
+  // Брейкпоинты
+  // Десктоп более 1229.5
+  const bpLaptop = 1229.5;
+  const bpTablet = 929.5;
+  const bpMob = 579.5;
+
   const {
     onSearchSubmit,
     filteredFilms,
+    setFilmsArray,
+    setFilteredFilms,
   } = useSearch({mainArray: beatMovies, isShort: isShort, preload: false});
 
+  /* --- ЭФФЕКТЫ --- */
+  // localStorage
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('searchdata'));
+    // защита от чужих данных
+    if (data !== null && data.userId === _id) {
+      // установка варифицированных данных
+      const { arrayValue, inputValue, isShortValue } = data;
+      setIsShort(isShortValue);
+      setFilmsArray(arrayValue);
+      setFilteredFilms(arrayValue);
+      setSearchInputValue(inputValue);
+    }
+  }, [_id]);
+
+  // window resizer
+  useEffect(() => {
+    setDevice(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize)
+  }, []);
+
+  // pagination
+  useEffect(() => {
+    paginatedFilms();
+  }, [deviceType, count, filteredFilms]);
+
+  useEffect(() => {
+    if (filteredFilms.length > films.length) {
+      setIsBtnActive(true);
+    } else {
+      setIsBtnActive(false);
+    }
+  }, [filteredFilms, films]);
+
+
+  /* --- ФУНКЦИИ --- */
   async function getMovies() {
     try {
       const allMovies = await onLoad();
@@ -41,10 +91,69 @@ function Movies({
     }
   }
 
-  // Обработчики
+  function setDevice(windowWidth) {
+    if (windowWidth > bpLaptop) {
+      setDeviceType ('desk');
+      return
+    }
+    if (windowWidth > bpTablet ) {
+      setDeviceType ('lapt');
+      return
+    }
+    if (windowWidth > bpMob ) {
+      setDeviceType ('tabl');
+      return
+    } else {
+      setDeviceType ('mob');
+    }
+  }
+
+  // начальное количество карточек
+  function setStartNumber () {
+    if (deviceType === 'desk') {
+      return { startQty: 16, loadQty: 4};
+    }
+    if (deviceType === 'lapt') {
+      return { startQty: 12, loadQty: 3};
+    }
+    if (deviceType === 'tabl') {
+      return { startQty: 8, loadQty: 2};
+    }
+    if (deviceType === 'mob') {
+      return { startQty: 5, loadQty: 2};
+    } else {
+      return { startQty: 0, loadQty: 0};
+    }
+  }
+
+  function paginatedFilms () {
+    const {startQty, loadQty} = setStartNumber();
+    const addedQty = loadQty * count;
+    const finalQty = startQty + addedQty;
+    const totalQty = filteredFilms.length;
+
+    let checkedQty;
+    finalQty > totalQty
+      ? checkedQty = totalQty
+      : checkedQty = finalQty;
+    const filmArray = [...filteredFilms].slice(0, checkedQty)
+    setFilms(filmArray);
+  }
+
+  /* --- ОБРАБОТЧИКИ --- */
   function handeOptionChange () {
     setIsShort(!isShort)
   }
+
+  function handleResize () {
+    setTimeout(() => {
+      setDevice(window.innerWidth)
+    }, 1000);
+  }
+
+  function handleMoreClick () {
+    setCount((c) => c + 1);
+  };
 
   async function handleSubmit (inValue) {
     if (!isLoaded) {
@@ -62,94 +171,6 @@ function Movies({
     }
   }
 
-  /* --- PAGINATION --- */
-    // слушатель на размер окна
-    useEffect(() => {
-    setDevice(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize)
-    }, []);
-
-    // // Брейкпоинты
-    // Десктоп более 1229.5
-    const bpLaptop = 1229.5;
-    const bpTablet = 929.5;
-    const bpMob = 579.5;
-
-    useEffect(() => {
-      paginatedFilms();
-      checkBtnActive();
-    }, [deviceType, count, filteredFilms]);
-
-    function handleResize () {
-      setTimeout(() => {
-        setDevice(window.innerWidth)
-      }, 1000);
-    }
-
-    function setDevice(windowWidth) {
-      if (windowWidth > bpLaptop) {
-        setDeviceType ('desk');
-        return
-      }
-      if (windowWidth > bpTablet ) {
-        setDeviceType ('lapt');
-        return
-      }
-      if (windowWidth > bpMob ) {
-        setDeviceType ('tabl');
-        return
-      } else {
-        setDeviceType ('mob');
-      }
-    }
-
-    // начальное количество карточек
-    function setStartNumber () {
-      if (deviceType === 'desk') {
-        return { startQty: 16, loadQty: 4};
-      }
-      if (deviceType === 'lapt') {
-        return { startQty: 12, loadQty: 3};
-      }
-      if (deviceType === 'tabl') {
-        return { startQty: 8, loadQty: 2};
-      }
-      if (deviceType === 'mob') {
-        return { startQty: 5, loadQty: 2};
-      } else {
-        return { startQty: 0, loadQty: 0};
-      }
-    }
-
-    function paginatedFilms () {
-      const {startQty, loadQty} = setStartNumber();
-      const addedQty = loadQty * count;
-      const finalQty = startQty + addedQty;
-      const totalQty = filteredFilms.length;
-
-      let checkedQty;
-      finalQty > totalQty
-        ? checkedQty = totalQty
-        : checkedQty = finalQty;
-
-      const filmArray = [...filteredFilms].slice(0, checkedQty);
-      setFilms(filmArray);
-    }
-
-    function checkBtnActive() {
-      if (filteredFilms.length > films.length) {
-        setIsBtnActive(true);
-      } else {
-        setIsBtnActive(false);
-      };
-    }
-
-    function counterIncrement () {
-      setCount((c) => c + 1);
-    };
-
-
   return (
     <main>
       <Section
@@ -161,6 +182,7 @@ function Movies({
           onSubmit={handleSubmit}
           onOptionChange={handeOptionChange}
           option={isShort}
+          searchInputValue={searchInputValue}
         />
         <Divider/>
         { apiLoading
@@ -172,7 +194,9 @@ function Movies({
               onLike={onLike}
               onDisLike={onDisLike}
               isBtnActive={isBtnActive}
-              onMoreClick={counterIncrement}
+              onMoreClick={handleMoreClick}
+              apiErrors={apiErrors}
+              pagination='true'
             />)
         }
       </Section>
