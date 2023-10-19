@@ -4,7 +4,8 @@
   width: 320px;
   height: 36px;
   border-radius: 6px;
-  background: light.$color_buttonMore;
+  color: white;
+  background: light.$color_accentMain;
   font-size: 12px;
   font-weight: 500;
   line-height: normal;
@@ -13,6 +14,12 @@
   margin-top: 80px;
   margin-bottom: 12px;
 }
+
+.movies__button_inactiv {
+  background: light.$color_buttonMore;
+  color:black;
+}
+
 
 @media screen and (max-width: 767.5px) {
   .movies__button {

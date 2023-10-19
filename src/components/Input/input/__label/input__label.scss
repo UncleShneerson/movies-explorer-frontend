@@ -1,0 +1,9 @@
+@use '../../../../utils/themes/light.scss';
+
+.input__label {
+  color: light.$color_textDescription;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 5px;
+}

@@ -1,7 +1,7 @@
-import React from "react";
+import {useState} from "react";
 
 function useForm(inputValues = {}) {
-  const [values, setValues] = React.useState(inputValues);
+  const [values, setValues] = useState(inputValues);
 
   function handleChange(e) {
     const { value, name } = e.target;

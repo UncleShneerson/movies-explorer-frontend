@@ -1,0 +1,10 @@
+@use '../../../../utils/themes/light.scss';
+
+.input__error {
+  color: light.$color_errors;
+  margin: 2px 0 4px 0;
+  padding: 0;
+  font-size: 9px;
+  line-height: 1;
+  min-height: 20px;
+}
