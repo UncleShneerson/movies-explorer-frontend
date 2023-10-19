@@ -79,7 +79,7 @@ class Api {
 }
 
 export const mainApi = new Api({
-  baseUrl: "http://localhost:3002",
-  // baseUrl: "https://api.uncle.movies.nomoredomainsicu.ru",
+  baseUrl: "https://api.uncle.movies.nomoredomainsicu.ru",
+  // baseUrl: "http://localhost:3002",
   // baseUrl: "http://localhost:3000",
 });
