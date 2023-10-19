@@ -13,7 +13,7 @@ function FormPage({
   onSubmit,
   apiErrors,
   isValid = false,
-  isLoading,
+  isLoading = false,
   loadingText = 'Подождите...',
 }) {
 
@@ -47,10 +47,9 @@ function FormPage({
               type="submit"
               className={`
                 form-page__btn
-                ${!isValid ? `form-page__btn_disabled` : ''}
-                hover-button
+                ${!isValid || isLoading ? `form-page__btn_disabled` : 'hover-button'}
               `}
-              disabled={!isValid}
+              disabled={!isValid || isLoading}
               onClick={handleSubmit}
             >
               {!isLoading ? btnTxt : loadingText}

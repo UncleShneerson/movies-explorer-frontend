@@ -1,5 +1,5 @@
 import './Profile.scss';
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useValidation from "../../hooks/useValidation";
 import useForm from "../../hooks/useForm";
@@ -11,17 +11,17 @@ function Profile({
     onSubmit,
     btnTxt = 'Сохранить',
     loadingText = 'Подождите...',
-    isLoading = false
+    isLoading = false,
   }) {
   /* --- КОНСТАНТЫ --- */
   const currentUser = useContext(CurrentUserContext);
+  const [isBtnLock, setIsBtnLock] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
   const [okMessage, setOkMessage] = useState('');
 
   const {
     values,
     handleChange: handleInputChange,
-    // setValues
   } = useForm({name: currentUser.name, email: currentUser.email});
 
   const {
@@ -30,6 +30,15 @@ function Profile({
     isValid,
     errorMessages,
   } = useValidation({ name: true, email: true, pass: true });
+
+  useEffect(() => {
+    if (isEditable) {
+    const isName = (values.name === currentUser.name);
+    const isEmail = (values.email === currentUser.email);
+
+    isName && isEmail ? setIsBtnLock(true) : setIsBtnLock(false);
+    }
+  }, [values, currentUser]);
 
   /* --- ФУНКЦИИ --- */
   function handleChange(e) {
@@ -43,18 +52,13 @@ function Profile({
   }
 
   async function handleSubmitClick (e) {
-    e.preventDefault()
-    if ((values.name === currentUser.name) && (values.email === currentUser.email)) {
-        setOkMessage('Введены предыдушие значения');
-        setIsEditable(false);
-    } else {
-      try {
-        await onSubmit(values);
-        setOkMessage('Данные обновлены');
-        setIsEditable(false);
-      } catch (error) {
-        setIsEditable(true);
-      }
+    e.preventDefault();
+    try {
+      await onSubmit(values);
+      setOkMessage('Данные обновлены');
+      setIsEditable(false);
+    } catch (error) {
+      setIsEditable(true);
     }
   }
 
@@ -80,6 +84,7 @@ function Profile({
                       value = { values.name }
                       placeholder = {currentUser.name}
                       onChange = { handleChange }
+                      disabled = {!isEditable || isLoading}
                     />
                   )
                 }
@@ -98,21 +103,22 @@ function Profile({
                     value = { values.email }
                     placeholder = { currentUser.email }
                     onChange = {handleChange}
-                    disabled = {!isEditable}
+                    disabled = {!isEditable || isLoading}
                   />
                   )
                 }
               </div>
               {(okMessage !== '') && (<p className='profile__form-notice'>{okMessage}</p>)}
+              {(isEditable && isBtnLock) && (<p className='profile__form-notice profile__form-notice_invalid'>Пожалуйста, обновите данные</p>)}
             </div>
             {isEditable ? (
               <div className='profile__buttons'>
                 <p className='profile__notice'>{apiErrors} {errorMessages.name} {errorMessages.email}</p>
                 <button
-                  className={`profile__btn-submit hover-button ${!isValid ? 'profile__btn-submit_invalid' : ''}`}
+                  className={`profile__btn-submit ${!isValid || isBtnLock || isLoading ? 'profile__btn-submit_invalid' : 'hover-button'}`}
                   type='submit'
                   onClick={handleSubmitClick}
-                  disabled={!isValid}
+                  disabled={!isValid || isBtnLock || isLoading}
                 >
                   {!isLoading ? btnTxt : loadingText}
                 </button>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function useSearch({mainArray, isShort, preload = true}) {
+function useSearch({mainArray, isShort, preload = true, isLocal = false}) {
   const { _id } = useContext(CurrentUserContext);
 
   // сохраняем базовые фильмы
@@ -22,7 +22,7 @@ function useSearch({mainArray, isShort, preload = true}) {
     } else {
       return
     }
-  }, []);
+  }, [mainArray]);
 
   // фильтрация по опции
   useEffect(() => {
@@ -38,7 +38,7 @@ function useSearch({mainArray, isShort, preload = true}) {
     const array = await createArray(inValue, baseArray)
     setFilmsArray (array);
     setFilteredFilms (array);
-    setLocalStorage(array, inValue, isShort);
+    isLocal && setLocalStorage(array, inValue, isShort);
   }
 
   async function createArray(inValue, baseArray) {

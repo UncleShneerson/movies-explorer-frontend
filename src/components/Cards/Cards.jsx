@@ -1,6 +1,5 @@
 import './Cards.scss';
 import Card from './Card/Card';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Cards({
   apiErrors = '',
@@ -35,10 +34,10 @@ function Cards({
           />)
         ))}
       </ul>
-      {pagination && cards.length !== 0 && (
+      {pagination && cards.length !== 0 && isBtnActive && (
         <button
           type='button'
-          className={`movies__button ${isBtnActive ? 'hover-button' : 'movies__button_inactiv'}`}
+          className={`movies__button hover-button`}
           onClick={handleMoreClick}
         >
           Ещё

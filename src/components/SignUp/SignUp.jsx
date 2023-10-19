@@ -6,7 +6,11 @@ import useValidation from "../../hooks/useValidation";
 import useForm from "../../hooks/useForm";
 
 
-function SignUp({ onSubmit, apiErrors }) {
+function SignUp({
+  isLoading = false,
+  onSubmit,
+  apiErrors
+}) {
   const [apiErrorMessage, setApiMessage] = useState('');
   useEffect(() => {
     apiErrors !== '' && setApiMessage(signUpErrors(apiErrors));
@@ -46,6 +50,7 @@ function SignUp({ onSubmit, apiErrors }) {
       errors={errorMessages}
       onSubmit={handleSubmit}
       apiErrors={apiErrorMessage}
+      isLoading={isLoading}
     >
       <Input
         label="Имя"
@@ -58,6 +63,7 @@ function SignUp({ onSubmit, apiErrors }) {
         errors={errorMessages}
         onChange={handleChange}
         isValid={validationData}
+        disabled = {isLoading}
 
       />
       <Input
@@ -72,6 +78,7 @@ function SignUp({ onSubmit, apiErrors }) {
         errors={errorMessages}
         onChange={handleChange}
         isValid={validationData}
+        disabled = {isLoading}
       />
       <Input
         label="Пароль"
@@ -84,6 +91,7 @@ function SignUp({ onSubmit, apiErrors }) {
         errors={errorMessages}
         onChange={handleChange}
         isValid={validationData}
+        disabled = {isLoading}
       />
     </FormPage>
   );

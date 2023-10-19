@@ -1,6 +1,6 @@
 import "./App.scss";
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { mainApi } from "../../utils/MainApi";
 import { moviesApi } from "../../utils/MoviesApi";
@@ -26,6 +26,9 @@ function App() {
   // массив сохраненных пользователем фильмов
   const [savedMovies, setSavedMovies] = useState([]);
   const [likedIdList, setLikedIdList] = useState([]);
+  const [beatMovies, setBeatMovies] = useState([]);
+  const [isMovieLoaded, setIsMovieLoaded] = useState(false);
+
 
   // ответы ошибок сервера
   const [apiError, setApiError] = useState('');
@@ -116,6 +119,8 @@ function App() {
       setIsLoading(true);
       setApiError('');
       const array = await moviesApi.getMovies();
+      setBeatMovies(array);
+      setIsMovieLoaded(true);
       return array;
     } catch (error) {
       setApiError(`
@@ -219,7 +224,7 @@ function App() {
         loggedIn: false,
       });
       localStorage.removeItem('searchdata');
-      navigate("/signin");
+      navigate("/");
     } catch (error) {
       throw error;
     }
@@ -290,11 +295,13 @@ function App() {
               element={LayoutHeaderFooter}
               innerComponent={Movies}
               onLoad={getFilmList}
-              apiLoading={isLoading}
+              isLoading={isLoading}
               apiErrors={apiError}
               likedList={likedIdList}
               onLike={cardLike}
               onDisLike={cardDisLike}
+              beatMovies={beatMovies}
+              isLoaded={isMovieLoaded}
             />
           }
         />
@@ -313,22 +320,16 @@ function App() {
         />
         <Route
           path="/signup"
-          element={
-            <SignUp
-              onSubmit={signUpAndSignIn}
-              apiErrors={apiError}
-              isLoading={isLoading}
-            />
+          element={!currentUser.loggedIn
+            ? <SignUp onSubmit={signUpAndSignIn} apiErrors={apiError} isLoading={isLoading}/>
+            : <Navigate to="/profile" replace />
           }
         />
         <Route
           path="/signin"
-          element={
-            <SignIn
-              onSubmit={handleSignIn}
-              apiErrors={apiError}
-              isLoading={isLoading}
-            />
+          element={!currentUser.loggedIn
+            ? <SignIn onSubmit={handleSignIn} apiErrors={apiError} isLoading={isLoading}/>
+            : <Navigate to="/saved-movies" replace />
           }
         />
         <Route

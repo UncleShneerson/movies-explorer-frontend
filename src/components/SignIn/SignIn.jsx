@@ -5,7 +5,11 @@ import Input from "../Input/Input";
 import useValidation from "../../hooks/useValidation";
 import useForm from "../../hooks/useForm";
 
-function SignIn({isLoading = false, onSubmit, apiErrors = '' }) {
+function SignIn({
+  isLoading = false,
+  onSubmit,
+  apiErrors = ''
+}) {
   const [apiErrorMessage, setApiMessage] = useState('');
 
   useEffect(() => {
@@ -58,6 +62,7 @@ function SignIn({isLoading = false, onSubmit, apiErrors = '' }) {
         errors={errorMessages}
         onChange={handleChange}
         isValid={validationData}
+        disabled = {isLoading}
       />
       <Input
         label="Пароль"
@@ -70,6 +75,7 @@ function SignIn({isLoading = false, onSubmit, apiErrors = '' }) {
         errors={errorMessages}
         onChange={handleChange}
         isValid={validationData}
+        disabled = {isLoading}
       />
     </FormPage>
   );

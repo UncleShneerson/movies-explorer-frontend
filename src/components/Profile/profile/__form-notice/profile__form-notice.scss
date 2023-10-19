@@ -8,4 +8,8 @@
   line-height: normal;
   margin-top: 0;
   margin-bottom: 20px;
+
+  &_invalid {
+    color: light.$color_textDescription;
+  }
 }

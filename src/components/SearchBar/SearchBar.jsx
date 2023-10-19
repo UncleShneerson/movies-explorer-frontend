@@ -1,66 +1,81 @@
 import "./SearchBar.scss";
 import searchIcon from "../../images/search_icon_gray.svg";
 import searchIconButton from "../../images/search_icon.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useForm from "../../hooks/useForm";
 
 function SearchBar({
   onOptionChange,
   option,
   onSubmit,
-  searchInputValue=''
+  inputValue = '',
+  isLocalSave = false,
+  isLoading = false,
 }) {
-  const [inputValue, setInputValue] = useState('');
-  const [wasSearch, setWasSearch] = useState(false);
   const [errorMessage, setЕrrorMessage] = useState('');
   const buttonStyle = { backgroundImage: `url(${searchIconButton})` };
+
+  const {
+    values,
+    handleChange: handleInputChange,
+    setValues,
+  } = useForm({search: ''});
+
+  useEffect(() => {
+    if (!isLocalSave) {
+      return
+    } else {
+      setValues({search: inputValue});
+    }
+  }, [inputValue]);
 
   function handleSliderClick() {
     onOptionChange();
   }
 
-  function handleInputChange(e) {
+  function handleChange(e) {
     e.target.value === ''
-      ? setЕrrorMessage('')
+      ? setЕrrorMessage('Необходимо ввести символ')
       : setЕrrorMessage('')
-    setInputValue(e.target.value)
+    handleInputChange(e);
   }
 
-  function handleSubmit() {
-    if(!wasSearch && inputValue === '' && searchInputValue !== ''){
-      setЕrrorMessage('Обновите поле поиска');
-      return
-    }
-    if(inputValue === ''){
+  function handleSubmit(e) {
+    e.preventDefault();
+    const searchValue = values.search;
+    if(searchValue === ''){
       setЕrrorMessage('Заполните поле');
       return
     } else {
-      onSubmit(inputValue);
-      setWasSearch(true);
+      onSubmit(searchValue);
     }
   }
 
   return (
     <>
     <div className='search'>
-      <div className='search__bar'>
+      <form className='search__bar'>
         <img className='search__bar-icon' src={searchIcon} alt='Поиск'/>
         <input
           className = { `search__bar-input ${errorMessage !== '' ? 'search__bar-input_invalid' : ''}`}
           type= 'text'
           name= 'search'
-          defaultValue = {searchInputValue}
+          value = {values.search}
           autoComplete='search'
           placeholder = 'Фильм'
-          onChange={handleInputChange}
+          onChange={handleChange}
+          disabled={isLoading}
         />
         <button
-          className={`search__bar-button hover-button`}
+          className={`search__bar-button ${isLoading ? 'search__bar-button_invalid' : 'hover-button'}`}
+          type="submit"
           style={buttonStyle}
           text='Поиск'
           onClick={handleSubmit}
+          disabled={isLoading}
         />
 
-      </div>
+      </form>
       <div className='search__option'>
         <div
           className={option ? 'search__option-slider search__option-slider_active' : 'search__option-slider'}
